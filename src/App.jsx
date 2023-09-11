@@ -1,9 +1,10 @@
+import Home from "./pages/Home/Home.jsx"
 
-function App() {
+const App = () => {
   return (
-    <>
-      <h1 className='text-7xl'>Hello World!</h1>
-    </>
+    <div className="font-body">
+      <Home/>
+    </div>
   )
 }
 

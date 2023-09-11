@@ -5,7 +5,14 @@ export default {
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      backgroundImage: {
+        'hero-section': "url('../../img/Poster.png')",
+      },
+      fontFamily: {
+        'body': ['DM Sans', 'sans-serif']
+      },
+    },
   },
   plugins: [],
 }
