@@ -1,9 +1,11 @@
 import HeroSection from "./HeroSection.jsx";
+import MovieList from "./MovieList.jsx";
 
 const Home = () => {
   return (
-    <div className="text-white">
+    <div>
       <HeroSection/>
+      <MovieList />
     </div>
   )
 }
