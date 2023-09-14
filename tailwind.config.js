@@ -10,7 +10,8 @@ export default {
         'hero-section': "url('../../img/Poster.png')",
       },
       fontFamily: {
-        'body': ['DM Sans', 'sans-serif']
+        body: ['DM Sans', 'sans-serif'],
+        'movie-details': ['Poppins']
       },
     },
   },
