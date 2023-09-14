@@ -1,10 +1,9 @@
-//import RightIcon from '../../img/RightIcon.'
 
 import MovieCard from "./MovieCard/";
 import useFetch from "../../hooks/useFetch";
 
 const MovieList = () => {
-  const {data: movies, isLoading, error} = useFetch(`https://api.themoviedb.org/3/movie/top_rated?api_key=${import.meta.env.VITE_API_KET}`);
+  const {data: movies, isLoading, error} = useFetch(`https://api.themoviedb.org/3/movie/top_rated?api_key=${import.meta.env.VITE_API_KEY}`);
 
   console.log(movies)
   return (
@@ -27,10 +26,11 @@ const MovieList = () => {
           movies.results.slice(0, 10).map(movie => (
             <MovieCard 
               key={movie.id}
+              id={movie.id}
               title={movie.title}
               poster={movie.poster_path}
               year={movie.release_date}
-        />
+            />
           ))
         )}
       </div>
