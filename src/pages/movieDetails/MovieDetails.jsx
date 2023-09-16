@@ -88,7 +88,7 @@ const MovieDetails = () => {
       <main className="col-span-5">
         <div className="p-2 md:p-6">
           <div className="bg-center bg-cover bg-no-repeat h-[50vh]"  style={{ backgroundImage: `url(${detailsImage})` }}></div>
-          <div className=" grid md:grid-cols-3 gap-x-4 border-2 border-gray-300 mt-4 p-4">
+          <div className=" grid md:grid-cols-3 gap-x-4 mt-4 p-4">
             <div className="col-span-2 flex flex-col gap-2 h-auto">
               <div className="flex items-center gap-2 lg:gap-4 text-gray-700 font-bold">
                 <div className=" mr-2 lg:text-xl" data-testid="movie-title">{title}  • <span className="ml-2" data-testid="movie-release-date">{releaseDate}</span>  PG-13    <span data-testid="movie-runtime" className="ml-2">{runtime}</span></div>
