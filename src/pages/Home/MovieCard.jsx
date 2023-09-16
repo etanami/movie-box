@@ -7,10 +7,8 @@ import tomatoes from '../../img/tomatoes.png';
 const MovieCard = ({title, poster, year, id}) => {
   // Create a Date object from the date string
   const dateObject = new Date(year);
-  // Extract the year from the Date object
-  const releaseDate = dateObject.getFullYear();
-  // Get the UTC timestamp in milliseconds
-  // const utcMilliseconds = dateObject.getTime();
+  // Convert the Date object to UTC
+  const releaseDate = dateObject.toUTCString();
 
   return (
     <Link to={`/movies/${id}`}>
