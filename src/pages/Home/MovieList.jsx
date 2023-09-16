@@ -5,7 +5,6 @@ import useFetch from "../../hooks/useFetch";
 const MovieList = () => {
   const {data: movies, isLoading, error} = useFetch(`https://api.themoviedb.org/3/movie/top_rated?api_key=${import.meta.env.VITE_API_KEY}`);
 
-  console.log(movies)
   return (
     <div className="mx-6 my-4 lg:mx-20 lg:my-12">
       <div className="flex justify-between">
@@ -19,7 +18,7 @@ const MovieList = () => {
           </span>
         </div>
       </div>
-      <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-16 lg:gap-20  mt-2 md:mt-8 ">
+      <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-2 md:gap-8 lg:gap-12  mt-2 md:mt-8 ">
         {error && <p>{ error }</p>}
         {isLoading && <p>Loading...</p>}
         {movies && (
