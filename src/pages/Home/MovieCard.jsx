@@ -12,8 +12,8 @@ const MovieCard = ({title, poster, year, id}) => {
 
   return (
     <Link to={`/movies/${id}`}>
-      <div data-testid="movie-card">
-        <img src={`https://image.tmdb.org/t/p/w500/${poster}`} alt={title} data-testid="movie-poster" className="border border-gray-400 w-full h-96" />
+      <div data-testid="movie-card" className="w-[280px] mx-auto">
+        <img src={`https://image.tmdb.org/t/p/w500/${poster}`} alt={title} data-testid="movie-poster" className="border border-gray-400 w-full h-96 rounded-lg overflow-hidden" />
         <div className="flex flex-col gap-1 md:gap-3">
           <span className="text-gray-400 text-xs font-bold block mt-3" data-testid="movie-release-date">USA, { releaseDate }</span>
           <span className="text-gray-900 text-lg font-bold block" data-testid="movie-title">{title}</span>
