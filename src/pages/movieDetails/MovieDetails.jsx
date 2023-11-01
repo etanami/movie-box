@@ -1,13 +1,14 @@
 import { useParams } from "react-router";
 import useFetch from "../../hooks/useFetch";
-import detailsImage from "../../img/detailsImage.svg"
+//import detailsImage from "../../img/detailsImage.svg"
 import Logo from "../../img/logo.png";
-import showtime from "../../img/showtime.png"
+import showtime from "../../img/showtime.png";
+import ReactPlayer from "react-player/youtube";
 
 const MovieDetails = () => {
   const { id } = useParams();
   const { data: details, isLoading, error } = useFetch(
-    `https://api.themoviedb.org/3/movie/${id}?api_key=${
+    `https://api.themoviedb.org/3/movie/${id}?&append_to_response=videos&api_key=${
       import.meta.env.VITE_API_KEY
     }`
   );
@@ -23,6 +24,7 @@ const MovieDetails = () => {
 
   const overview = details?.overview || "Overview not available";
   const runtime = details?.runtime || "Runtime not available";
+  const youtubeVideoKey = details?.videos.results[0].key;
 
   { error && <p>{ error }</p> }
   { isLoading && <p>Loading...</p> }
@@ -87,7 +89,8 @@ const MovieDetails = () => {
       </aside>
       <main className="col-span-5">
         <div className="p-2 md:p-6">
-          <div className="bg-center bg-cover bg-no-repeat h-[50vh]"  style={{ backgroundImage: `url(${detailsImage})` }}></div>
+          <ReactPlayer url={`https://www.youtube.com/watch?v=${youtubeVideoKey}`} width="100%" height="50vh" controls />
+          {/* {<div className="bg-center bg-cover bg-no-repeat h-[50vh]"  style={{ backgroundImage: `url(${detailsImage})` }}></div>} */}
           <div className=" grid md:grid-cols-3 gap-x-4 mt-4 p-4">
             <div className="col-span-2 flex flex-col gap-2 h-auto">
               <div className="flex items-center gap-2 lg:gap-4 text-gray-700 font-bold">
