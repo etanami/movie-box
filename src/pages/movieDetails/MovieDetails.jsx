@@ -102,11 +102,11 @@ const MovieDetails = () => {
         <div className="p-2 md:p-6">
           <ReactPlayer url={`https://www.youtube.com/watch?v=${youtubeVideoKey}`} width="100%" height="50vh" light={true} controls />
           {/* {<div className="bg-center bg-cover bg-no-repeat h-[50vh]"  style={{ backgroundImage: `url(${detailsImage})` }}></div>} */}
-          <div className=" grid md:grid-cols-3 gap-x-4 mt-4 p-4">
-            <div className="col-span-2 flex flex-col gap-2 h-auto">
-              <div className="flex items-center gap-2 lg:gap-4 text-gray-700 font-bold">
-                <div className=" mr-2 lg:text-xl" data-testid="movie-title">{title}  • <span className="ml-2" data-testid="movie-release-date">{releaseDate}</span>  PG-13    <span data-testid="movie-runtime" className="ml-2">{runtime}</span></div>
-                <Genre />
+          <div className=" flex flex-col md:grid md:grid-cols-3  gap-x-4 mt-4 p-4">
+            <div className="md:col-span-2 flex flex-col gap-2 h-auto">
+              <div className="flex flex-col lg:flex-row items-end lg:items-center gap-2 lg:gap-4 text-gray-700 font-bold">
+                <div className=" mr-2 lg:text-xl" data-testid="movie-title">{title}  • <span className="ml-2" data-testid="movie-release-date">{releaseDate}</span>  PG-13    <span data-testid="movie-runtime" className="ml-2"> • {runtime} minutes</span></div>
+                <span className="flex gap-1"><Genre /></span>
               </div>
               <h1 className="mt-3 lg:text-lg" data-testid="movie-overview">{overview}</h1>
               <Credit role="Directors" department="Directing" />
@@ -117,7 +117,7 @@ const MovieDetails = () => {
                 <span className="block md:inline-block p-2 text-center">Awards 9 nominations</span>
               </div>
             </div>
-            <div className="text-xl">
+            <div className="md:col-span-1 text-xl">
               <div className="flex justify-end font-medium text-gray-500 p-2">
                 <span>8.5 |</span>
                 <span>| 350k</span>
