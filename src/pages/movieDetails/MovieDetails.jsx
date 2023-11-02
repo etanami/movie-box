@@ -4,9 +4,11 @@ import useFetch from "../../hooks/useFetch";
 import Logo from "../../img/logo.png";
 import showtime from "../../img/showtime.png";
 import ReactPlayer from "react-player/youtube";
+import Credit from "../../components/Credit";
 
 const MovieDetails = () => {
   const { id } = useParams();
+
   const { data: details, isLoading, error } = useFetch(
     `https://api.themoviedb.org/3/movie/${id}?&append_to_response=videos&api_key=${
       import.meta.env.VITE_API_KEY
@@ -26,12 +28,21 @@ const MovieDetails = () => {
   const runtime = details?.runtime || "Runtime not available";
   const youtubeVideoKey = details?.videos.results[0].key;
 
+  const Genre = () => {
+    const genres = details?.genres;
+    return (
+      genres?.map(genre => (
+        <span className="text-rose-500 text-sm border-2 border-gray-100 px-2 rounded-xl" key={genre.name}>{genre.name}</span>
+      ))
+    )
+  }
+
   { error && <p>{ error }</p> }
   { isLoading && <p>Loading...</p> }
 
   return (
-    <div className="grid grid-cols-6 font-movie-details">
-      <aside className="py-12 border-r-2 border-gray-300 rounded-r-3xl">
+    <div className="grid lg:grid-cols-6 font-movie-details">
+      <aside className="py-12 border-r-2 border-gray-300 rounded-r-3xl hidden lg:block">
         <div className="font-bold text-xl p-4 flex items-center gap-4">
           <img src={Logo} alt="Moviebox logo" />
           <h1 className="hidden lg:block">MovieBox</h1>
@@ -89,19 +100,18 @@ const MovieDetails = () => {
       </aside>
       <main className="col-span-5">
         <div className="p-2 md:p-6">
-          <ReactPlayer url={`https://www.youtube.com/watch?v=${youtubeVideoKey}`} width="100%" height="50vh" controls />
+          <ReactPlayer url={`https://www.youtube.com/watch?v=${youtubeVideoKey}`} width="100%" height="50vh" light={true} controls />
           {/* {<div className="bg-center bg-cover bg-no-repeat h-[50vh]"  style={{ backgroundImage: `url(${detailsImage})` }}></div>} */}
           <div className=" grid md:grid-cols-3 gap-x-4 mt-4 p-4">
             <div className="col-span-2 flex flex-col gap-2 h-auto">
               <div className="flex items-center gap-2 lg:gap-4 text-gray-700 font-bold">
                 <div className=" mr-2 lg:text-xl" data-testid="movie-title">{title}  • <span className="ml-2" data-testid="movie-release-date">{releaseDate}</span>  PG-13    <span data-testid="movie-runtime" className="ml-2">{runtime}</span></div>
-                <span className="text-rose-500 text-sm border-2 border-gray-100 px-2 rounded-xl">Action</span>
-                <span className="text-rose-500 text-sm border-2 border-gray-100 px-2 rounded-xl">Drama</span>
+                <Genre />
               </div>
               <h1 className="mt-3 lg:text-lg" data-testid="movie-overview">{overview}</h1>
-              <p>Director : <span className="mt-3 text-rose-500">Joseph Kosinski</span></p>
-              <p>Writers :  <span className="mt-3 text-rose-500">Jim Cash, Jack Epps Jr,  Peter Craig</span></p>
-              <p>Stars: <span className="text-rose-500">Tom Cruise, Jennifer Connelly, Miles Teller</span></p>
+              <Credit role="Directors" department="Directing" />
+              <Credit role="Writers" department="Writing" />
+              <Credit role="Stars" department="Acting" />
               <div className="border border-gray-200 rounded-xl text-xl">
                 <span className="block md:inline-block p-2 md:p-4 bg-rose-700 text-white text-center py-2 rounded-xl">Top rated movie #65</span>
                 <span className="block md:inline-block p-2 text-center">Awards 9 nominations</span>
