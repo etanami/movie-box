@@ -3,7 +3,11 @@ import MovieCard from "./MovieCard/";
 import useFetch from "../../hooks/useFetch";
 
 const MovieList = () => {
-  const {data: movies, isLoading, error} = useFetch(`https://api.themoviedb.org/3/movie/top_rated?api_key=${import.meta.env.VITE_API_KEY}`);
+  const {data: movies, isLoading, error} = useFetch(`https://api.themoviedb.org/3/movie/top_rated?api_key=${import.meta.env.VITE_API_KEY}&append_to_response=videos`);
+
+  const convertRating = rating => {
+    return Math.round(rating * 10);
+  }
 
   return (
     <div className="mx-6 my-4 lg:mx-20 lg:my-12">
@@ -29,6 +33,7 @@ const MovieList = () => {
               title={movie.title}
               poster={movie.poster_path}
               year={movie.release_date}
+              rating={convertRating(movie.vote_average)}
             />
           ))
         )}
