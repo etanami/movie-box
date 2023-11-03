@@ -1,6 +1,7 @@
 
 import MovieCard from "./MovieCard/";
 import useFetch from "../../hooks/useFetch";
+import Loader from "../../components/Loader";
 
 const MovieList = () => {
   const {data: movies, isLoading, error} = useFetch(`https://api.themoviedb.org/3/movie/top_rated?api_key=${import.meta.env.VITE_API_KEY}&append_to_response=videos`);
@@ -22,9 +23,18 @@ const MovieList = () => {
           </span>
         </div>} */}
       </div>
-      <div className="flex gap-8 overflow-x-auto no-scrollbar mt-2 md:mt-8">
-        {error && <p>{ error }</p>}
-        {isLoading && <p>Loading...</p>}
+      {error && <p>{ error }</p>}
+      <div className="py-3 px-2 flex gap-4 lg:gap-8 overflow-x-auto no-scrollbar mt-2 md:mt-8">
+        {isLoading && 
+          <>
+            <Loader />
+            <Loader />
+            <Loader />
+            <Loader />
+            <Loader />
+            <Loader />
+          </>
+        }
         {movies && (
           movies.results.slice(0, 10).map(movie => (
             <MovieCard 
