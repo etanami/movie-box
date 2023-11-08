@@ -1,14 +1,10 @@
-
+import { convertRating } from "../../components/ConvertRating";
 import MovieCard from "./MovieCard/";
 import useFetch from "../../hooks/useFetch";
 import Loader from "../../components/Loader";
 
 const MovieList = () => {
   const {data: movies, isLoading, error} = useFetch(`https://api.themoviedb.org/3/movie/top_rated?api_key=${import.meta.env.VITE_API_KEY}&append_to_response=videos`);
-
-  const convertRating = rating => {
-    return Math.round(rating * 10);
-  }
 
   return (
     <div className="mx-6 my-4 lg:mx-20 lg:my-12">
